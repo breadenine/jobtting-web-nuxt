@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin transitions($transitionNames: all) {
+  transition: $transitionNames 0.3s;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}

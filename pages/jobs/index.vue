@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-link to="jobs/add"><a-button type="primary">기업등록</a-button></nuxt-link>
+    <nuxt-link to="/jobs/add"><a-button type="primary">기업등록</a-button></nuxt-link>
     <a-table
       :columns="columns"
       :rowKey="(record) => record.login.uuid"

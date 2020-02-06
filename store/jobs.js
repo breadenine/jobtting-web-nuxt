@@ -9,7 +9,7 @@ export const getters = {
 
 export const mutations = {
   SET_SAMPLE(state, sample) {
-    console.log(sample)
+    // console.log(sample)
     state.sample = sample
   }
 }

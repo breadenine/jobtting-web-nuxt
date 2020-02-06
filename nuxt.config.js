@@ -1,8 +1,9 @@
+import colors from 'vuetify/es5/util/colors'
 require('dotenv').config()
 
 export default {
-  // mode: 'universal',
   mode: 'spa',
+  // mode: 'universal',
   /*
    ** Headers of the page
    */
@@ -10,6 +11,7 @@ export default {
     htmlAttrs: {
       lang: 'ko'
     },
+    titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -29,24 +31,32 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: 'ant-design-vue/dist/antd.less', lang: 'less' }],
+  css: [],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/antd-ui'],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/vuetify'
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/dotenv', '@nuxtjs/style-resources'],
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources'
+  ],
   styleResources: {
-    scss: ['~assets/scss/variable.scss', '~assets/scss/common.scss']
+    scss: ['~assets/scss/common.scss']
   },
   /*
    ** Axios module configuration
@@ -54,22 +64,42 @@ export default {
    */
   axios: {},
   /*
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
+  vuetify: {
+    customVariables: ['~/assets/vuetify/variables.scss'],
+    theme: {
+      dark: false,
+      lang: {
+        current: 'ko'
+      },
+      themes: {
+        dark: {
+          primary: colors.cyan.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        },
+        light: {
+          primary: colors.cyan.darken1
+          // secondary: '#b0bec5',
+          // accent: '#8c9eff',
+          // error: '#b71c1c'
+        }
+      }
+    }
+  },
+  /*
    ** Build configuration
    */
   build: {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.less$/,
-        loader: 'less-loader',
-        options: {
-          javascriptEnabled: true,
-          modifyVars: { 'primary-color': '#22a6b3' }
-        }
-      })
-    },
-    transpile: [/^vue-awesome/]
+    extend(config, ctx) {}
   }
 }

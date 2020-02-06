@@ -1,6 +1,6 @@
 # jobtting-web-nuxt
 
-> My legendary Nuxt.js project
+> My super-duper Nuxt.js project
 
 ## Build Setup
 

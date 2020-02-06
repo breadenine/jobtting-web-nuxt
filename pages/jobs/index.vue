@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="contents__top">
+      <h1>color</h1>
       <nuxt-link to="/jobs/add" class="link__job_add">
         <v-btn color="primary" large>
           기업등록

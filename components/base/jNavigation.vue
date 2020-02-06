@@ -13,7 +13,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" color="primary" dark elevate-on-scroll fixed app>
-      <v-app-bar-nav-icon @click.stop="onDrawer" class="d-lg-none d-xl-flex" />
+      <v-app-bar-nav-icon @click.stop="onDrawer" class="d-lg-none d-xl-none" />
       <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" class="d-none d-lg-flex d-xl-flex" />
       <v-toolbar-title v-text="title" />
       <v-spacer />

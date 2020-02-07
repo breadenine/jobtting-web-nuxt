@@ -75,6 +75,7 @@ export default {
     theme: {
       dark: false,
       lang: {
+        defaultLocale: 'ko',
         current: 'ko'
       },
       themes: {

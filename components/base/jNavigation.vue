@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="true" fixed app>
       <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
+        <v-list-item v-for="(item, index) in items" :key="index" :to="item.to" router exact>
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -17,6 +17,11 @@
       <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" class="d-none d-lg-flex d-xl-flex" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn icon>
+        <v-badge :content="4" color="red" overlap>
+          <v-icon>mdi-bell</v-icon>
+        </v-badge>
+      </v-btn>
       <v-menu left bottom>
         <template v-slot:activator="{ on }">
           <v-btn v-on="on" icon>
@@ -55,20 +60,32 @@ export default {
       clipped: true,
       drawer: true,
       fixed: true,
+      miniVariant: false,
+      title: '잡팅',
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          icon: 'mdi-view-list',
+          title: '목록',
+          to: '/jobs'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-information-outline',
+          title: '잡팅이란?',
+          to: '/info'
+        },
+        {
+          icon: 'mdi-account-box',
+          title: 'Contact Us',
+          to: '/contact'
         }
-      ],
-      miniVariant: false,
-      title: '잡팅'
+      ]
+    }
+  },
+  created() {
+    const width = this.$vuetify.breakpoint.width
+    const md = this.$vuetify.breakpoint.thresholds.md
+    if (width <= md) {
+      this.drawer = false
     }
   },
   methods: {

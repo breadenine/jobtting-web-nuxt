@@ -2,6 +2,21 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+/* Google Web Font */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean');
 
+/* Vuetify Options */
 $body-font-family: 'Noto Sans KR', sans-serif;
+
+/* Vue || Nuxt Style */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* Custom */

@@ -2,8 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 require('dotenv').config()
 
 export default {
-  mode: 'spa',
-  // mode: 'universal',
+  // mode: 'spa',
+  mode: 'universal',
   /*
    ** Headers of the page
    */
@@ -65,6 +65,13 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/vuetify/variables.scss'],
+    // defaultAssets: {
+    //   font: {
+    //     family: 'Noto Sans KR',
+    //     size: 16
+    //   }
+    // },
+    treeShake: true,
     theme: {
       dark: false,
       lang: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="contents__top">
-      <h1>color</h1>
+      <h1 class="page__title">목록</h1>
       <nuxt-link to="/jobs/add" class="link__job_add">
         <v-btn color="primary" large>
           기업등록
@@ -31,16 +31,78 @@ export default {
       options: {},
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: '기업명',
           align: 'left',
           sortable: false,
-          value: 'name'
+          value: 'name',
+          fixed: true
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
+        {
+          text: '팀',
+          align: 'left',
+          sortable: false,
+          value: 'team'
+        },
+        {
+          text: '마감일',
+          align: 'center',
+          sortable: true,
+          value: 'closingDate'
+        },
+        {
+          text: '지원일',
+          align: 'center',
+          sortable: true,
+          value: 'applyDate'
+        },
+        {
+          text: '상태',
+          align: 'center',
+          sortable: true,
+          value: 'status'
+        },
+        {
+          text: '거리/시간',
+          align: 'left',
+          sortable: true,
+          value: 'distance'
+        },
+        {
+          text: '연봉',
+          align: 'left',
+          sortable: true,
+          value: 'pay'
+        },
+        {
+          text: '지원검토',
+          align: 'center',
+          sortable: true,
+          value: 'review'
+        },
+        {
+          text: '지원사이트',
+          align: 'left',
+          sortable: false,
+          value: 'recruitsite'
+        },
+        {
+          text: '기타',
+          align: 'center',
+          sortable: false,
+          value: 'etc'
+        },
+        {
+          text: '잡플래닛',
+          align: 'center',
+          sortable: true,
+          value: 'jobplanet'
+        },
+        {
+          text: '홈페이지',
+          align: 'left',
+          sortable: false,
+          value: 'homepage'
+        }
       ]
     }
   },
@@ -103,84 +165,298 @@ export default {
     getDesserts() {
       return [
         {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
         },
         {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
         },
         {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
         },
         {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
         },
         {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
         },
         {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
         },
         {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
         },
         {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
         },
         {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
         },
         {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
+        },
+        {
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
+        },
+        {
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
+        },
+        {
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
+        },
+        {
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
+        },
+        {
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
+        },
+        {
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
+        },
+        {
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
+        },
+        {
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
+        },
+        {
+          name: '엔에이치엔고도',
+          team: '',
+          closingDate: '2020-02-29',
+          applyDate: '2020-02-05',
+          status: '서류지원',
+          distance: '구디역 / 1h',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
+          jobplanet: '2.6',
+          homepage: ''
+        },
+        {
+          name: '야놀자',
+          team: 'SOS유닛',
+          closingDate: '상시',
+          applyDate: '2019-12-20',
+          status: '면접탈락',
+          distance: '삼성역 / 1h 30m',
+          pay: '',
+          review: '',
+          recruitsite: '원티드',
+          etc: '',
+          jobplanet: '2.7',
+          homepage: ''
+        },
+        {
+          name: '미식의시대',
+          team: '',
+          closingDate: '상시',
+          applyDate: '2020-01-30',
+          status: '서류지원',
+          distance: '종각역 / 1h 30m',
+          pay: '',
+          review: '5',
+          recruitsite: '원티드',
+          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
+          jobplanet: '',
+          homepage: ''
         }
       ]
     }

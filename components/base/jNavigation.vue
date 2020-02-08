@@ -30,7 +30,7 @@
         </template>
 
         <v-list dense>
-          <v-list-item v-show="!$vuetify.theme.dark" @click="$vuetify.theme.dark = true">
+          <v-list-item v-show="!isDarkTheme" @click="changeDarkTheme(true)">
             <v-list-item-icon>
               <v-icon>mdi-brightness-4</v-icon>
             </v-list-item-icon>
@@ -38,7 +38,7 @@
               <v-list-item-title>어두운 테마</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item v-show="$vuetify.theme.dark" @click="$vuetify.theme.dark = false">
+          <v-list-item v-show="isDarkTheme" @click="changeDarkTheme(false)">
             <v-list-item-icon>
               <v-icon>mdi-white-balance-sunny</v-icon>
             </v-list-item-icon>
@@ -81,12 +81,16 @@ export default {
       ]
     }
   },
-  created() {
-    const width = this.$vuetify.breakpoint.width
-    const md = this.$vuetify.breakpoint.thresholds.md
-    if (width <= md) {
-      this.drawer = false
+  computed: {
+    isDarkTheme() {
+      return this.$vuetify.theme.dark
     }
+  },
+  created() {
+    this.onMobile()
+  },
+  mounted() {
+    this.initDarkTheme()
   },
   methods: {
     onDrawer() {
@@ -94,6 +98,21 @@ export default {
         this.miniVariant = false
       }
       this.drawer = !this.drawer
+    },
+    onMobile() {
+      const width = this.$vuetify.breakpoint.width
+      const md = this.$vuetify.breakpoint.thresholds.md
+      if (width <= md) {
+        this.drawer = false
+      }
+    },
+    initDarkTheme() {
+      const isDarkTheme = Boolean(localStorage.getItem('isDarkTheme')) || false
+      this.$vuetify.theme.dark = isDarkTheme
+    },
+    changeDarkTheme(isDarkTheme) {
+      localStorage.setItem('isDarkTheme', isDarkTheme)
+      this.$vuetify.theme.dark = isDarkTheme
     }
   }
 }

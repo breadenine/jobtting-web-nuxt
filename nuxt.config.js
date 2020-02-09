@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import ko from 'vuetify/es5/locale/ko'
 require('dotenv').config()
 
 export default {
@@ -75,7 +76,7 @@ export default {
     theme: {
       dark: false,
       lang: {
-        defaultLocale: 'ko',
+        locales: { ko },
         current: 'ko'
       },
       themes: {

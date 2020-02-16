@@ -9,14 +9,33 @@
       </nuxt-link>
     </div>
 
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :options.sync="options"
-      :server-items-length="totalDesserts"
-      :loading="loading"
-      class="elevation-1"
-    ></v-data-table>
+    <v-simple-table fixed-header height="100%">
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th v-for="item in headers" :key="item.text" class="text-left">
+              {{ item.text }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in desserts" :key="index" @click="goDetail(item.name)">
+            <td>{{ item.name }}</td>
+            <td>{{ item.team }}</td>
+            <td>{{ item.closingDate }}</td>
+            <td>{{ item.applyDate }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.distance }}</td>
+            <td>{{ item.pay }}</td>
+            <td>{{ item.review }}</td>
+            <td>{{ item.recruitsite }}</td>
+            <td>{{ item.etc }}</td>
+            <td>{{ item.jobplanet }}</td>
+            <td>{{ item.homepage }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
   </div>
 </template>
 
@@ -117,6 +136,7 @@ export default {
       deep: true
     }
   },
+  created() {},
   mounted() {
     this.getDataFromApi().then((data) => {
       this.desserts = data.items
@@ -127,12 +147,13 @@ export default {
     getDataFromApi() {
       this.loading = true
       return new Promise((resolve, reject) => {
-        const { sortBy, sortDesc, page, itemsPerPage } = this.options
+        // const { sortBy, sortDesc, page, itemsPerPage } = this.options
+        const { page, itemsPerPage } = this.options
 
         let items = this.getDesserts()
         const total = items.length
 
-        if (sortBy.length === 1 && sortDesc.length === 1) {
+        /* if (sortBy.length === 1 && sortDesc.length === 1) {
           items = items.sort((a, b) => {
             const sortA = a[sortBy[0]]
             const sortB = b[sortBy[0]]
@@ -147,7 +168,7 @@ export default {
               return 0
             }
           })
-        }
+        } */
 
         if (itemsPerPage > 0) {
           items = items.slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -459,6 +480,14 @@ export default {
           homepage: ''
         }
       ]
+    },
+    goDetail(companyName) {
+      this.$router.push({
+        path: `/jobs/detail`,
+        query: {
+          name: companyName
+        }
+      })
     }
   }
 }

@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <v-container fluid>
     <div class="contents__top">
-      <h1 class="page__title">목록</h1>
+      <btn color="primary" outlined>
+        컬럼설정
+      </btn>
+      <v-spacer />
       <nuxt-link to="/jobs/add" class="link__job_add">
-        <v-btn color="primary" large>
+        <btn color="primary">
           기업등록
-        </v-btn>
+        </btn>
       </nuxt-link>
     </div>
 
@@ -36,7 +39,7 @@
         </tbody>
       </template>
     </v-simple-table>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -497,8 +500,5 @@ export default {
 .contents__top {
   margin-bottom: 1rem;
   display: flex;
-}
-.link__job_add {
-  margin-left: auto;
 }
 </style>

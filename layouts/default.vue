@@ -3,9 +3,7 @@
     <j-navigation />
 
     <v-content>
-      <v-container fluid>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
 
     <j-footer />

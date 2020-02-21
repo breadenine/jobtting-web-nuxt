@@ -1,7 +1,9 @@
 <template>
   <v-container fluid class="header_wrap">
     <header class="header">
-      <nuxt-link to="/" class="link--icon"><img src="@/assets/img/logo/logo.png" alt="잡팅"/></nuxt-link>
+      <nuxt-link to="/" class="link--icon">
+        <h1><img src="@/assets/img/logo/logo.png" alt="잡팅" /></h1>
+      </nuxt-link>
       <v-spacer />
       <nuxt-link to="/" class="link">잡팅소개</nuxt-link>
       <nuxt-link to="/" class="link">공지사항</nuxt-link>

@@ -1,4 +1,5 @@
 @charset 'utf-8';
+@import './_import/reset.scss';
 
 /* Vue || Nuxt Style */
 .page-enter-active,
@@ -20,6 +21,7 @@
   // border-bottom: 2px solid currentColor;
 }
 .nuxt-link-exact-active {
+  text-decoration: none;
   // border-bottom: 1px solid currentColor;
 }
 

@@ -81,9 +81,13 @@ export default {
 
 <style lang="scss" scoped>
 .header_wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding-top: 0;
   padding-bottom: 0;
   height: 60px;
+  background-color: $white;
   border-bottom: 1px solid $secondary;
 }
 .header {

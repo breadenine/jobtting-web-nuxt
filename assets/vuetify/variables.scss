@@ -9,14 +9,4 @@
 /* Vuetify Options */
 $body-font-family: 'Noto Sans KR', sans-serif;
 
-/* Vue || Nuxt Style */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.3s;
-}
-.page-enter,
-.page-leave-to {
-  opacity: 0;
-}
-
 /* Custom */

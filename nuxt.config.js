@@ -35,11 +35,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/scss/common.scss'],
+  css: [],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~plugins/globalComponents.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -56,8 +56,12 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['~assets/scss/_import/_variables.scss', '~assets/scss/_import/_mixins.scss', '~assets/scss/common.scss']
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -69,12 +73,7 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/vuetify/variables.scss'],
-    // defaultAssets: {
-    //   font: {
-    //     family: 'Noto Sans KR',
-    //     size: 16
-    //   }
-    // },
+    // 없으면 dev모드에서 custom-variables 적용 안됨
     treeShake: true,
     theme: {
       dark: false,
@@ -84,19 +83,24 @@ export default {
       },
       themes: {
         dark: {
-          primary: colors.cyan.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          primary: colors.cyan.darken1,
+          // accent: colors.grey.darken3,
+          secondary: colors.grey.lighten2,
+          // info: colors.teal.lighten1,
+          // warning: colors.amber.base,
+          // error: colors.deepOrange.accent4,
+          // success: colors.green.accent3
+          dark: colors.grey.darken4
         },
         light: {
-          primary: colors.cyan.darken1
-          // secondary: '#b0bec5',
-          // accent: '#8c9eff',
-          // error: '#b71c1c'
+          primary: colors.cyan.darken1,
+          // accent: colors.grey.darken3,
+          secondary: colors.grey.lighten2,
+          // info: colors.teal.lighten1,
+          // warning: colors.amber.base,
+          // error: colors.deepOrange.accent4,
+          // success: colors.green.accent3
+          dark: colors.grey.darken4
         }
       }
     }

@@ -1,9 +1,31 @@
 @charset 'utf-8';
 
-@mixin transitions($transitionNames: all) {
-  transition: $transitionNames 0.3s;
+/* Vue || Nuxt Style */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
 }
 
 .page__title {
   color: pink;
+}
+
+/* nuxt link, link style*/
+.nuxt-link-active {
+  text-decoration: none;
+  // border-bottom: 2px solid currentColor;
+}
+.nuxt-link-exact-active {
+  // border-bottom: 1px solid currentColor;
+}
+
+.link {
+  color: $dark;
+}
+.link--icon {
+  font-size: 0;
 }

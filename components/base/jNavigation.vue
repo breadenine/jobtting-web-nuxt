@@ -1,55 +1,13 @@
 <template>
-  <div>
-    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="true" fixed app>
-      <v-list>
-        <v-list-item v-for="(item, index) in items" :key="index" :to="item.to" router exact>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" color="primary" dark elevate-on-scroll fixed app>
-      <v-app-bar-nav-icon @click.stop="onDrawer" class="d-lg-none d-xl-none" />
-      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" class="d-none d-lg-flex d-xl-flex" />
-      <v-toolbar-title v-text="title" />
+  <v-container fluid class="header_wrap">
+    <header class="header">
+      <nuxt-link to="/" class="link--icon"><img src="@/assets/img/logo/logo.png" alt="잡팅"/></nuxt-link>
       <v-spacer />
-      <v-btn icon>
-        <v-badge :content="4" color="red" overlap>
-          <v-icon>mdi-bell</v-icon>
-        </v-badge>
-      </v-btn>
-      <v-menu left bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list dense>
-          <v-list-item v-show="!isDarkTheme" @click="changeDarkTheme(true)">
-            <v-list-item-icon>
-              <v-icon>mdi-brightness-4</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>어두운 테마</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item v-show="isDarkTheme" @click="changeDarkTheme(false)">
-            <v-list-item-icon>
-              <v-icon>mdi-white-balance-sunny</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>밝은 테마</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
-  </div>
+      <nuxt-link to="/" class="link">잡팅소개</nuxt-link>
+      <nuxt-link to="/" class="link">공지사항</nuxt-link>
+      <btn @click="login" color="dark" dark>로그인</btn>
+    </header>
+  </v-container>
 </template>
 
 <script>
@@ -93,6 +51,9 @@ export default {
     this.initDarkTheme()
   },
   methods: {
+    login() {
+      alert(1)
+    },
     onDrawer() {
       if (this.miniVariant) {
         this.miniVariant = false
@@ -118,4 +79,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.header_wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+  border-bottom: 1px solid $secondary;
+}
+.header {
+  display: flex;
+  align-items: center;
+
+  .link {
+    margin-right: 20px;
+  }
+}
+</style>

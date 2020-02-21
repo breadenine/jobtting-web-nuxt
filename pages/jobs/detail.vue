@@ -3,8 +3,7 @@
     <div class="contents__top">
       <h1 class="page__title">{{ selectedCompanyName }}</h1>
     </div>
-
-    <div ref="map" class="map"></div>
+    <div id="map" ref="map" class="map"></div>
   </div>
 </template>
 
@@ -32,8 +31,8 @@ export default {
   created() {},
   mounted() {
     const latlng = this.latlng.split(',')
-    const mapDiv = this.$refs.map
-    new naver.maps.Map(mapDiv, {
+    // const mapDiv = this.$refs.map
+    new naver.maps.Map('map', {
       center: new naver.maps.LatLng(latlng[0], latlng[1]),
       zoom: 15
     })

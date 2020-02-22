@@ -1,5 +1,14 @@
 <template>
-  <v-btn @click="$emit('click')" :color="color" :dark="dark" :outlined="outlined" depressed rounded>
+  <v-btn
+    @click="$emit('click')"
+    :color="color"
+    :dark="dark"
+    :outlined="outlined"
+    :text="text"
+    :disabled="disabled"
+    depressed
+    rounded
+  >
     <slot></slot>
   </v-btn>
 </template>
@@ -17,6 +26,14 @@ export default {
       default: false
     },
     outlined: {
+      type: Boolean,
+      default: false
+    },
+    text: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

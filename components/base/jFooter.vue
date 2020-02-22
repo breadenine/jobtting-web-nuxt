@@ -1,7 +1,10 @@
 <template>
-  <v-footer>
+  <v-footer class="footer">
     <v-spacer />
-    <span>&copy; 2019</span>
+    <span>문의하기</span>
+    <span>이용약관</span>
+    <span>개인정보처리방침</span>
+    <span>&copy; 2020</span>
   </v-footer>
 </template>
 
@@ -11,4 +14,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.footer span {
+  margin-left: 1rem;
+  font-size: 0.825rem;
+  /* color: $secondary; */
+}
+</style>

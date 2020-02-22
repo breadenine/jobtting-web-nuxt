@@ -1,18 +1,16 @@
 <template>
   <v-container fluid>
     <div class="contents__top">
-      <btn color="primary" outlined>
+      <btn @click="onModalColumnFilter" color="primary" outlined>
         컬럼설정
       </btn>
       <v-spacer />
-      <nuxt-link to="/jobs/add" class="link__job_add">
-        <btn color="primary">
-          기업등록
-        </btn>
-      </nuxt-link>
+      <btn @click="onModalCreate" color="primary">
+        기업등록
+      </btn>
     </div>
 
-    <v-simple-table fixed-header height="100%">
+    <v-simple-table fixed-header height="100%" class="table">
       <template v-slot:default>
         <thead>
           <tr>
@@ -39,12 +37,22 @@
         </tbody>
       </template>
     </v-simple-table>
+
+    <modalCreate />
+    <modalColumnFilter />
   </v-container>
 </template>
 
 <script>
+import modalCreate from '~/components/jobs/modalCreate'
+import modalColumnFilter from '~/components/jobs/modalColumnFilter'
+
 export default {
   name: 'Jobs',
+  components: {
+    modalCreate,
+    modalColumnFilter
+  },
   data() {
     return {
       totalDesserts: 0,
@@ -187,259 +195,7 @@ export default {
       })
     },
     getDesserts() {
-      return [
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
-        {
-          name: '엔에이치엔고도',
-          team: '',
-          closingDate: '2020-02-29',
-          applyDate: '2020-02-05',
-          status: '서류지원',
-          distance: '구디역 / 1h',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '잡플래닛 평점이 2.6이긴 한데 it평점은 좋으니까..',
-          jobplanet: '2.6',
-          homepage: ''
-        },
-        {
-          name: '야놀자',
-          team: 'SOS유닛',
-          closingDate: '상시',
-          applyDate: '2019-12-20',
-          status: '면접탈락',
-          distance: '삼성역 / 1h 30m',
-          pay: '',
-          review: '',
-          recruitsite: '원티드',
-          etc: '',
-          jobplanet: '2.7',
-          homepage: ''
-        },
-        {
-          name: '미식의시대',
-          team: '',
-          closingDate: '상시',
-          applyDate: '2020-01-30',
-          status: '서류지원',
-          distance: '종각역 / 1h 30m',
-          pay: '',
-          review: '5',
-          recruitsite: '원티드',
-          etc: '모회사: 코스콤, 모회서에서 분리된 초기 스타트업',
-          jobplanet: '',
-          homepage: ''
-        },
+      const data = [
         {
           name: '엔에이치엔고도',
           team: '',
@@ -483,6 +239,7 @@ export default {
           homepage: ''
         }
       ]
+      return [...data, ...data, ...data, ...data]
     },
     goDetail(companyName) {
       this.$router.push({
@@ -491,6 +248,12 @@ export default {
           name: companyName
         }
       })
+    },
+    onModalCreate() {
+      this.$store.commit('SET_MODAL_JOBS_CREATE', true)
+    },
+    onModalColumnFilter() {
+      this.$store.commit('SET_MODAL_JOBS_COLUMN_FILTER', true)
     }
   }
 }
@@ -500,5 +263,8 @@ export default {
 .contents__top {
   margin-bottom: 1rem;
   display: flex;
+}
+.table tbody tr td {
+  cursor: pointer;
 }
 </style>

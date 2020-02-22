@@ -4,7 +4,7 @@
     <v-container>
       <section class="section section__company">
         <h2 class="company__name">{{ companyName }}</h2>
-        <btn>지원정보 수정</btn>
+        <btn @click="onModalUpdate">지원정보 수정</btn>
       </section>
 
       <section class="section">
@@ -84,14 +84,20 @@
         </ul>
       </section>
     </v-container>
+
+    <modalUpdate />
   </div>
 </template>
 
 <script>
 import mobile from '@/plugins/mobile'
+import modalUpdate from '~/components/jobs/modalUpdate'
 
 export default {
   name: 'JobsDetail',
+  components: {
+    modalUpdate
+  },
   mixins: [mobile],
   data() {
     return {
@@ -133,6 +139,9 @@ export default {
         position: new naver.maps.LatLng(latlng[0], latlng[1]),
         map: this.map
       })
+    },
+    onModalUpdate() {
+      this.$store.commit('SET_MODAL_JOBS_UPDATE', true)
     }
   }
 }

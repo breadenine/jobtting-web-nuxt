@@ -1,5 +1,7 @@
 export const state = () => ({
-  mainState: 123456
+  MODAL_JOBS_CREATE: false,
+  MODAL_JOBS_UPDATE: false,
+  MODAL_JOBS_COLUMN_FILTER: false
 })
 
 export const getters = {
@@ -7,5 +9,13 @@ export const getters = {
 }
 
 export const mutations = {
-  setBg(state, music) {}
+  SET_MODAL_JOBS_CREATE(state, status) {
+    state.MODAL_JOBS_CREATE = status
+  },
+  SET_MODAL_JOBS_UPDATE(state, status) {
+    state.MODAL_JOBS_UPDATE = status
+  },
+  SET_MODAL_JOBS_COLUMN_FILTER(state, status) {
+    state.MODAL_JOBS_COLUMN_FILTER = status
+  }
 }

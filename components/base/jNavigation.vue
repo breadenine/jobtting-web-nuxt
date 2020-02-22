@@ -85,7 +85,7 @@ export default {
 .header_wrap {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 110;
   padding-top: 0;
   padding-bottom: 0;
   height: 60px;

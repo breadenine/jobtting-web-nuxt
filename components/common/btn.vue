@@ -5,6 +5,7 @@
     :dark="dark"
     :outlined="outlined"
     :text="text"
+    :icon="icon"
     :disabled="disabled"
     depressed
     rounded
@@ -30,6 +31,10 @@ export default {
       default: false
     },
     text: {
+      type: Boolean,
+      default: false
+    },
+    icon: {
       type: Boolean,
       default: false
     },

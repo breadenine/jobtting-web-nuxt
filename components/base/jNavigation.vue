@@ -5,6 +5,10 @@
         <h1><img src="@/assets/img/logo/logo.png" alt="잡팅" /></h1>
       </nuxt-link>
       <v-spacer />
+      <btn @click="changeTheme" icon color="dark" class="link">
+        <v-icon v-show="$vuetify.theme.dark">mdi-brightness-4</v-icon>
+        <v-icon v-show="!$vuetify.theme.dark">mdi-white-balance-sunny</v-icon>
+      </btn>
       <nuxt-link to="/" class="link">잡팅소개</nuxt-link>
       <nuxt-link to="/" class="link">공지사항</nuxt-link>
       <btn @click="login" color="dark" dark>로그인</btn>
@@ -16,38 +20,12 @@
 export default {
   name: 'JNavigation',
   data() {
-    return {
-      clipped: true,
-      drawer: true,
-      fixed: true,
-      miniVariant: false,
-      title: '잡팅',
-      items: [
-        {
-          icon: 'mdi-view-list',
-          title: '목록',
-          to: '/jobs'
-        },
-        {
-          icon: 'mdi-information-outline',
-          title: '잡팅이란?',
-          to: '/info'
-        },
-        {
-          icon: 'mdi-account-box',
-          title: 'Contact Us',
-          to: '/contact'
-        }
-      ]
-    }
+    return {}
   },
   computed: {
     isDarkTheme() {
       return this.$vuetify.theme.dark
     }
-  },
-  created() {
-    this.onMobile()
   },
   mounted() {
     this.initDarkTheme()
@@ -56,26 +34,14 @@ export default {
     login() {
       alert(1)
     },
-    onDrawer() {
-      if (this.miniVariant) {
-        this.miniVariant = false
-      }
-      this.drawer = !this.drawer
-    },
-    onMobile() {
-      const width = this.$vuetify.breakpoint.width
-      const md = this.$vuetify.breakpoint.thresholds.md
-      if (width <= md) {
-        this.drawer = false
-      }
-    },
     initDarkTheme() {
-      const isDarkTheme = Boolean(localStorage.getItem('isDarkTheme')) || false
-      this.$vuetify.theme.dark = isDarkTheme
+      const prevTheme = localStorage.getItem('darkTheme') || 'light'
+      this.$vuetify.theme.dark = prevTheme === 'dark'
     },
-    changeDarkTheme(isDarkTheme) {
-      localStorage.setItem('isDarkTheme', isDarkTheme)
-      this.$vuetify.theme.dark = isDarkTheme
+    changeTheme() {
+      this.$vuetify.theme.dark = !this.isDarkTheme
+      const currentTHeme = this.isDarkTheme ? 'dark' : 'light'
+      localStorage.setItem('darkTheme', currentTHeme)
     }
   }
 }

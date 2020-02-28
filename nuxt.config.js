@@ -57,7 +57,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/proxy'
   ],
   styleResources: {
     scss: ['~assets/scss/_import/_variables.scss', '~assets/scss/_import/_mixins.scss', '~assets/scss/common.scss']
@@ -113,5 +114,13 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  proxy: {
+    // Simple proxy
+    '/api': 'http://localhost:3000',
+    '/api3': {
+      changeOrigin: false,
+      target: { socketPath: '/var/run/http-sockets/backend.sock' }
+    }
   }
 }

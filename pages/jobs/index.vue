@@ -147,7 +147,9 @@ export default {
       deep: true
     }
   },
-  created() {},
+  created() {
+    this.getSample()
+  },
   mounted() {
     this.getDataFromApi().then((data) => {
       this.desserts = data.items
@@ -254,6 +256,10 @@ export default {
     },
     onModalColumnFilter() {
       this.$store.commit('SET_MODAL_JOBS_COLUMN_FILTER', true)
+    },
+    async getSample() {
+      const data = await this.$axios.get('/api/sample')
+      console.log(data)
     }
   }
 }

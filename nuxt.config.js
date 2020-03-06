@@ -3,8 +3,8 @@ import ko from 'vuetify/es5/locale/ko'
 require('dotenv').config()
 
 export default {
-  // mode: 'spa',
-  mode: 'universal',
+  mode: 'spa',
+  // mode: 'universal',
   /*
    ** Headers of the page
    */

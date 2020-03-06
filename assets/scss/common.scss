@@ -11,10 +11,6 @@
   opacity: 0;
 }
 
-.page__title {
-  color: pink;
-}
-
 /* nuxt link, link style*/
 .nuxt-link-active {
   text-decoration: none;
@@ -30,4 +26,8 @@
 }
 .link--icon {
   font-size: 0;
+}
+
+img {
+  max-width: 100%;
 }

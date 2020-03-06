@@ -3,16 +3,20 @@
     <v-card>
       <v-card-title>
         <span class="headline">지원정보 수정</span>
+        <v-spacer />
+        <v-btn @click="closeModal" icon>
+          <v-icon large>mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-form ref="form" v-model="form">
             <v-row>
               <v-col cols="12" md="4">
-                <v-text-field label="기업명 *" required readonly />
+                <v-text-field label="기업명 *" required readonly clearable />
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field label="팀" hint="" />
+                <v-text-field label="팀" hint="optional" clearable />
               </v-col>
               <v-col cols="12" md="4">
                 <v-autocomplete

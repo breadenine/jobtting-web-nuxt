@@ -3,6 +3,10 @@
     <v-card>
       <v-card-title>
         <span class="headline">기업등록</span>
+        <v-spacer />
+        <v-btn @click="closeModal" icon>
+          <v-icon large>mdi-close</v-icon>
+        </v-btn>
       </v-card-title>
       <v-card-text>
         <v-container>

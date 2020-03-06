@@ -7,6 +7,7 @@
     :text="text"
     :icon="icon"
     :disabled="disabled"
+    :block="block"
     depressed
     rounded
   >
@@ -39,6 +40,10 @@ export default {
       default: false
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    block: {
       type: Boolean,
       default: false
     }

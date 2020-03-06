@@ -1,16 +1,19 @@
 <template>
-  <v-container fluid class="header_wrap">
+  <v-container :class="{ dark: $vuetify.theme.dark }" fluid class="header_wrap">
     <header class="header">
-      <nuxt-link to="/" class="link--icon">
-        <h1><img src="@/assets/img/logo/logo.png" alt="잡팅" /></h1>
+      <nuxt-link to="/jobs" class="link--icon">
+        <h1>
+          <img v-show="$vuetify.theme.dark" src="@/assets/img/logo/logo_dark.png" alt="잡팅" />
+          <img v-show="!$vuetify.theme.dark" src="@/assets/img/logo/logo.png" alt="잡팅" />
+        </h1>
       </nuxt-link>
       <v-spacer />
-      <btn @click="changeTheme" icon color="dark" class="link">
+      <btn @click="changeTheme" icon color="dark" class="link" dark>
         <v-icon v-show="$vuetify.theme.dark">mdi-weather-night</v-icon>
         <v-icon v-show="!$vuetify.theme.dark">mdi-weather-sunny</v-icon>
       </btn>
-      <nuxt-link to="/" class="link">잡팅소개</nuxt-link>
-      <nuxt-link to="/" class="link">공지사항</nuxt-link>
+      <nuxt-link to="/about" class="link">잡팅소개</nuxt-link>
+      <nuxt-link to="/notice" class="link">공지사항</nuxt-link>
       <btn @click="login" color="dark" dark>로그인</btn>
     </header>
   </v-container>
@@ -32,7 +35,7 @@ export default {
   },
   methods: {
     login() {
-      alert(1)
+      this.$router.push('/')
     },
     initDarkTheme() {
       const prevTheme = localStorage.getItem('darkTheme') || 'light'
@@ -57,6 +60,16 @@ export default {
   height: 60px;
   background-color: $white;
   border-bottom: 1px solid $secondary;
+
+  &.dark {
+    background-color: $dark;
+    .link {
+      color: $white;
+    }
+    .v-icon {
+      color: $white;
+    }
+  }
 }
 .header {
   display: flex;

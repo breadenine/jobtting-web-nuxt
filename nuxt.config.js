@@ -117,10 +117,10 @@ export default {
   },
   proxy: {
     // Simple proxy
-    '/api': 'http://localhost:3000',
-    '/api3': {
-      changeOrigin: false,
-      target: { socketPath: '/var/run/http-sockets/backend.sock' }
-    }
+    // '/api': 'http://localhost:3000',
+    // '/api3': {
+    //   changeOrigin: false,
+    //   target: { socketPath: '/var/run/http-sockets/backend.sock' }
+    // }
   }
 }

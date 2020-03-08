@@ -8,18 +8,64 @@
         </h1>
       </nuxt-link>
       <v-spacer />
-      <btn @click="changeTheme" icon color="dark" class="link" dark>
-        <v-icon v-show="$vuetify.theme.dark">mdi-weather-night</v-icon>
-        <v-icon v-show="!$vuetify.theme.dark">mdi-weather-sunny</v-icon>
-      </btn>
       <nuxt-link to="/about" class="link">잡팅소개</nuxt-link>
       <nuxt-link to="/notice" class="link">공지사항</nuxt-link>
-      <btn @click="login" color="dark" dark>로그인</btn>
+      <template v-if="currentUser">
+        <v-menu bottom offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" icon>
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list dense rounded>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>
+                  <strong>{{ currentUser.username }}</strong>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item-group>
+              <v-list-item @click="changeTheme">
+                <v-list-item-icon>
+                  <v-icon v-show="$vuetify.theme.dark">mdi-weather-sunny</v-icon>
+                  <v-icon v-show="!$vuetify.theme.dark">mdi-weather-night</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-show="$vuetify.theme.dark">밝은 테마</v-list-item-title>
+                  <v-list-item-title v-show="!$vuetify.theme.dark">어두운 테마</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="setting">
+                <v-list-item-icon>
+                  <v-icon>mdi-account-check</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>개인설정</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item @click="logout">
+                <v-list-item-icon>
+                  <v-icon>mdi-logout</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>로그아웃</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-menu>
+      </template>
+      <template v-else>
+        <btn color="dark" dark>로그인</btn>
+      </template>
     </header>
   </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'JNavigation',
   data() {
@@ -28,15 +74,15 @@ export default {
   computed: {
     isDarkTheme() {
       return this.$vuetify.theme.dark
-    }
+    },
+    ...mapState('auth', {
+      currentUser: 'currentUser'
+    })
   },
   mounted() {
     this.initDarkTheme()
   },
   methods: {
-    login() {
-      this.$router.push('/')
-    },
     initDarkTheme() {
       const prevTheme = localStorage.getItem('darkTheme') || 'light'
       this.$vuetify.theme.dark = prevTheme === 'dark'
@@ -45,6 +91,13 @@ export default {
       this.$vuetify.theme.dark = !this.isDarkTheme
       const currentTHeme = this.isDarkTheme ? 'dark' : 'light'
       localStorage.setItem('darkTheme', currentTHeme)
+    },
+    setting() {
+      this.$router.push('/setting')
+    },
+    logout() {
+      this.$store.dispatch('auth/logOut')
+      this.$router.push('/')
     }
   }
 }

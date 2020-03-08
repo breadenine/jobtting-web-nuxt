@@ -49,6 +49,11 @@ import modalColumnFilter from '~/components/jobs/modalColumnFilter'
 
 export default {
   name: 'Jobs',
+  head() {
+    return {
+      title: '기업목록'
+    }
+  },
   components: {
     modalCreate,
     modalColumnFilter
@@ -258,8 +263,8 @@ export default {
       this.$store.commit('SET_MODAL_JOBS_COLUMN_FILTER', true)
     },
     async getSample() {
-      const data = await this.$axios.get('/api/sample')
-      console.log(data)
+      // const data = await this.$axios.get('/api/sample')
+      // console.log(data)
     }
   }
 }

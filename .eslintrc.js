@@ -14,6 +14,7 @@ module.exports = {
     naver: true
   },
   rules: {
-    'no-new': 0
+    'no-new': 0,
+    'no-console': 0
   }
 }

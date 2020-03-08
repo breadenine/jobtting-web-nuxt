@@ -1,7 +1,8 @@
 <template>
   <v-content :class="{ mobile: isMobile }">
     <div class="logo">
-      <img src="@/assets/img/logo/logo_1200x1200.png" alt="잡팅 로고" />
+      <img v-if="$vuetify.theme.dark" src="@/assets/img/logo/logo_dark_1200x1200.png" alt="잡팅 로고" />
+      <img v-else src="@/assets/img/logo/logo_1200x1200.png" alt="잡팅 로고" />
     </div>
 
     <p class="mt-6 mb-12 text-center">
@@ -10,33 +11,59 @@
     </p>
 
     <div class="login_btn_wrap">
-      <nuxt-link to="/jobs" class="btn__login">
-        <btn block color="primary">게스트로 시작하기</btn>
-      </nuxt-link>
-      <nuxt-link to="/jobs" class="btn__login">
-        <btn block color="whtie">
-          <v-icon left>mdi-google</v-icon>
-          Google로 시작하기
-        </btn>
-      </nuxt-link>
-      <nuxt-link to="/jobs" class="btn__login">
-        <btn block dark color="dark">
-          <v-icon left>mdi-book</v-icon>
-          GitHub로 시작하기
-        </btn>
-      </nuxt-link>
+      <btn @click="signIn('guest')" block color="primary" class="btn__login">
+        <v-icon left>mdi-account</v-icon>
+        게스트로 시작하기
+      </btn>
+      <btn @click="signIn('google')" block color="whtie" class="btn__login">
+        <v-icon left>mdi-google</v-icon>
+        Google로 시작하기
+      </btn>
+      <btn @click="signIn('github')" block dark color="dark" class="btn__login">
+        <v-icon left>mdi-book</v-icon>
+        GitHub로 시작하기
+      </btn>
     </div>
   </v-content>
 </template>
 
 <script>
 import mobile from '@/plugins/mobile'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   layout: 'empty',
   name: 'Login',
   components: {},
-  mixins: [mobile]
+  mixins: [mobile],
+  computed: {
+    ...mapGetters('auth', {
+      loggedIn: 'loggedIn'
+    })
+  },
+  fetch({ store, params }) {
+    store.dispatch('auth/validate')
+  },
+  methods: {
+    ...mapActions('auth', {
+      logIn: 'logIn'
+    }),
+    async signIn(type) {
+      switch (type) {
+        case 'google':
+          break
+        case 'github':
+          break
+        default:
+          await this.logIn({
+            type: 'guest'
+          })
+          break
+      }
+
+      this.$router.push('/jobs')
+    }
+  }
 }
 </script>
 

@@ -122,5 +122,8 @@ export default {
     //   changeOrigin: false,
     //   target: { socketPath: '/var/run/http-sockets/backend.sock' }
     // }
+  },
+  router: {
+    middleware: 'auth'
   }
 }

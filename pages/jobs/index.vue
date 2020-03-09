@@ -39,13 +39,11 @@
     </v-simple-table>
 
     <modalCreate />
-    <modalColumnFilter />
   </v-container>
 </template>
 
 <script>
 import modalCreate from '~/components/jobs/modalCreate'
-import modalColumnFilter from '~/components/jobs/modalColumnFilter'
 
 export default {
   name: 'Jobs',
@@ -55,8 +53,7 @@ export default {
     }
   },
   components: {
-    modalCreate,
-    modalColumnFilter
+    modalCreate
   },
   data() {
     return {

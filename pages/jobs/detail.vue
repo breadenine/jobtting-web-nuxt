@@ -3,7 +3,7 @@
     <div id="map" ref="map" :class="{ mobile: isMobile }" class="map"></div>
     <v-container>
       <section class="section section__company">
-        <h2 class="company__name">{{ companyName }}</h2>
+        <h2 class="company__name">{{ detail.name }}</h2>
         <btn @click="onModalUpdate">지원정보 수정</btn>
       </section>
 
@@ -12,49 +12,47 @@
         <ul class="description">
           <li class="keyword">
             <div class="keyword__title">팀</div>
-            <div class="keyword__contents">IT개발팀</div>
+            <div class="keyword__contents">{{ detail.team }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">상태</div>
-            <div class="keyword__contents">서류지원</div>
+            <div class="keyword__contents">{{ detail.status }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">마감일</div>
-            <div class="keyword__contents">2020-20-02</div>
+            <div class="keyword__contents">{{ detail.closingDate }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">지원일</div>
-            <div class="keyword__contents">2020-20-02</div>
+            <div class="keyword__contents">{{ detail.applyDate }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">거리/시간</div>
-            <div class="keyword__contents">1h 20m</div>
+            <div class="keyword__contents">{{ detail.distance }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">연봉</div>
-            <div class="keyword__contents">5,000만원</div>
+            <div class="keyword__contents">{{ detail.pay }}만원</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">지원검토</div>
-            <div class="keyword__contents">5, 매우 긍정적</div>
+            <div class="keyword__contents">{{ detail.review }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">지원사이트</div>
-            <div class="keyword__contents">로켓펀치</div>
+            <div class="keyword__contents">{{ detail.recruitsite }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">홈페이지</div>
-            <div class="keyword__contents">http://www.naver.com</div>
+            <div class="keyword__contents">{{ detail.homepage }}</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">잡플래닛</div>
-            <div class="keyword__contents">5</div>
+            <div class="keyword__contents">{{ detail.jobplanet }}</div>
           </li>
         </ul>
         <div class="etc">
-          이 곳은 기타 textarea 공간 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et dolorem ratione modi,
-          assumenda accusamus maiores repellendus voluptatum quasi doloremque, error placeat voluptatem totam ea culpa
-          odit non? Ut, blanditiis architecto.
+          {{ detail.etc }}
         </div>
       </section>
 
@@ -85,12 +83,13 @@
       </section>
     </v-container>
 
-    <modalUpdate />
+    <modalUpdate :detail="{ ...detail }" />
   </div>
 </template>
 
 <script>
 import mobile from '@/plugins/mobile'
+import { mapGetters } from 'vuex'
 import modalUpdate from '~/components/jobs/modalUpdate'
 
 export default {
@@ -105,21 +104,25 @@ export default {
     }
   },
   computed: {
-    companyName() {
-      return this.$route.query.name
+    companyId() {
+      return this.$route.query.id
     },
     latlng() {
-      switch (this.companyName) {
-        case '야놀자':
+      switch (this.companyId) {
+        case '1':
           return '37.5067804,127.0640373'
-        case '엔에이치엔고도':
-          return '37.4828634,126.8946148'
         default:
           return '37.4828634,126.8946148'
       }
-    }
+    },
+    ...mapGetters('jobs', {
+      detail: 'detail'
+    })
   },
   watch: {},
+  fetch({ store, route, paarms }) {
+    store.dispatch('jobs/detail', route.query.id)
+  },
   created() {},
   mounted() {
     this.initMap()

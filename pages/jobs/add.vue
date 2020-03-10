@@ -2,7 +2,13 @@
   <div>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation>
-        <v-combobox v-model="name" :items="nameList" :rules="nameRules" @keyup="changeName" label="기업명"></v-combobox>
+        <v-combobox
+          v-model="name"
+          :items="nameList"
+          :rules="nameRules"
+          @keyup="changeName"
+          label="기업명"
+        ></v-combobox>
         <v-text-field v-model="team" label="팀" required></v-text-field>
 
         <v-menu
@@ -41,7 +47,12 @@
           <v-radio label="탈락" value="탈락"></v-radio>
         </v-radio-group>
 
-        <v-text-field v-model="distance" :rules="distanceRules" label="시간/거리" required></v-text-field>
+        <v-text-field
+          v-model="distance"
+          :rules="distanceRules"
+          label="시간/거리"
+          required
+        ></v-text-field>
         <!-- <v-text-field v-model="distance" :rules="emailRules" label="E-mail" required></v-text-field> -->
         <v-text-field v-model="pay" label="연봉">
           <template v-slot:append>

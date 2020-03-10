@@ -32,7 +32,7 @@
           </li>
           <li class="keyword">
             <div class="keyword__title">연봉</div>
-            <div class="keyword__contents">{{ detail.pay }}만원</div>
+            <div class="keyword__contents">{{ detail.pay | comma }}만원</div>
           </li>
           <li class="keyword">
             <div class="keyword__title">지원검토</div>
@@ -44,7 +44,9 @@
           </li>
           <li class="keyword">
             <div class="keyword__title">홈페이지</div>
-            <div class="keyword__contents">{{ detail.homepage }}</div>
+            <div class="keyword__contents">
+              <a :href="detail.homepage" target="_blank" class="link">{{ detail.homepage }}</a>
+            </div>
           </li>
           <li class="keyword">
             <div class="keyword__title">잡플래닛</div>

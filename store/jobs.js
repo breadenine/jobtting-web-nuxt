@@ -307,9 +307,7 @@ export const actions = {
     return data
   },
   detail({ state, commit }, id) {
-    console.log(id)
     const detail = state.jobs.find((item) => item.id === id)
-    console.log(detail)
     commit('SET_DETAIL', detail)
   }
 }

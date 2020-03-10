@@ -1,7 +1,11 @@
 <template>
   <v-content :class="{ mobile: isMobile }">
     <div class="logo">
-      <img v-if="$vuetify.theme.dark" src="@/assets/img/logo/logo_dark_1200x1200.png" alt="잡팅 로고" />
+      <img
+        v-if="$vuetify.theme.dark"
+        src="@/assets/img/logo/logo_dark_1200x1200.png"
+        alt="잡팅 로고"
+      />
       <img v-else src="@/assets/img/logo/logo_1200x1200.png" alt="잡팅 로고" />
     </div>
 

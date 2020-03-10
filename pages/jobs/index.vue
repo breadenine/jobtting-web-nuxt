@@ -24,7 +24,7 @@
             <td>{{ item.applyDate }}</td>
             <td>{{ item.status }}</td>
             <td>{{ item.distance }}</td>
-            <td>{{ item.pay }}</td>
+            <td>{{ item.pay | comma }}</td>
             <td>{{ item.review }}</td>
             <td>{{ item.recruitsite }}</td>
             <td>{{ item.etc }}</td>
@@ -139,7 +139,9 @@ export default {
   },
   watch: {},
   fetch({ store, params }) {
-    store.dispatch('jobs/init')
+    store.dispatch('jobs/init').then((item) => {
+      console.log(item)
+    })
   },
   created() {},
   mounted() {},

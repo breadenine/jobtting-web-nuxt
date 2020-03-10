@@ -5,9 +5,9 @@
     <div id="map" ref="map" :class="{ mobile: isMobile }" class="map"></div>
 
     <v-card-text>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos perferendis optio dolorum autem consequatur
-      sapiente illum, in ducimus laudantium exercitationem quod quibusdam quisquam labore voluptatum nobis et fugiat
-      beatae voluptatem!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos perferendis optio dolorum
+      autem consequatur sapiente illum, in ducimus laudantium exercitationem quod quibusdam quisquam
+      labore voluptatum nobis et fugiat beatae voluptatem!
     </v-card-text>
 
     <v-card-actions>

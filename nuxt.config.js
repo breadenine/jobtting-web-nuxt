@@ -25,7 +25,9 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      { src: `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NAVER_MAPS_CLIENT_ID}` }
+      {
+        src: `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NAVER_MAPS_CLIENT_ID}`
+      }
     ]
   },
   /*
@@ -39,7 +41,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/globalComponents.js'],
+  plugins: ['~plugins/globalComponents.js', '~plugins/globalFilters.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -61,7 +63,11 @@ export default {
     '@nuxtjs/proxy'
   ],
   styleResources: {
-    scss: ['~assets/scss/_import/_variables.scss', '~assets/scss/_import/_mixins.scss', '~assets/scss/common.scss']
+    scss: [
+      '~assets/scss/_import/_variables.scss',
+      '~assets/scss/_import/_mixins.scss',
+      '~assets/scss/common.scss'
+    ]
   },
   /*
    ** Axios module configuration

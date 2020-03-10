@@ -24,6 +24,10 @@
 .link {
   color: $dark;
 }
+.theme--dark .link {
+  color: $white;
+}
+
 .link--icon {
   font-size: 0;
 }

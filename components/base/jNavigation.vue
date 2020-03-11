@@ -3,8 +3,8 @@
     <header class="header">
       <nuxt-link to="/jobs" class="link--icon">
         <h1>
-          <img v-show="$vuetify.theme.dark" src="@/assets/img/logo/logo_dark.png" alt="잡팅" />
-          <img v-show="!$vuetify.theme.dark" src="@/assets/img/logo/logo.png" alt="잡팅" />
+          <img v-show="isDarkTheme" src="@/assets/img/logo/logo_dark.png" alt="잡팅" />
+          <img v-show="!isDarkTheme" src="@/assets/img/logo/logo.png" alt="잡팅" />
         </h1>
       </nuxt-link>
       <v-spacer />
@@ -29,12 +29,12 @@
             <v-list-item-group>
               <v-list-item @click="changeTheme">
                 <v-list-item-icon>
-                  <v-icon v-show="$vuetify.theme.dark">mdi-weather-sunny</v-icon>
-                  <v-icon v-show="!$vuetify.theme.dark">mdi-weather-night</v-icon>
+                  <v-icon v-show="isDarkTheme">mdi-weather-sunny</v-icon>
+                  <v-icon v-show="!isDarkTheme">mdi-weather-night</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title v-show="$vuetify.theme.dark">밝은 테마</v-list-item-title>
-                  <v-list-item-title v-show="!$vuetify.theme.dark">어두운 테마</v-list-item-title>
+                  <v-list-item-title v-show="isDarkTheme">밝은 테마</v-list-item-title>
+                  <v-list-item-title v-show="!isDarkTheme">어두운 테마</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item @click="setting">

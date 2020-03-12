@@ -13,13 +13,20 @@
           <v-form ref="form" v-model="form">
             <v-row>
               <v-col cols="12" md="4">
-                <v-text-field label="기업명 *" required readonly clearable />
+                <v-text-field
+                  v-model="job.name"
+                  :rules="[(v) => !!v || '필수입력 항목입니다.']"
+                  label="기업명 *"
+                  required
+                  clearable
+                />
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field label="팀" hint="optional" clearable />
+                <v-text-field v-model="job.team" label="팀" hint="" clearable />
               </v-col>
               <v-col cols="12" md="4">
                 <v-autocomplete
+                  v-model="job.status"
                   :items="[
                     '대기',
                     '서류지원',
@@ -31,32 +38,46 @@
                     '임원면접',
                     '최종면접',
                     '최종합격',
-                    '면접탈락'
+                    '면접탈락',
+                    '취소'
                   ]"
+                  :rules="[(v) => !!v || '필수입력 항목입니다.']"
                   label="상태 *"
                   required
                 />
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field label="마감일 *" required />
+                <v-text-field
+                  v-model="job.closingDate"
+                  :rules="[(v) => !!v || '필수입력 항목입니다.']"
+                  label="마감일 *"
+                  required
+                />
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field label="지원일" required />
+                <v-text-field
+                  v-model="job.applyDate"
+                  :rules="[(v) => !!v || '필수입력 항목입니다.']"
+                  label="지원일"
+                  required
+                />
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field label="거리/시간" />
+                <v-text-field v-model="job.distance" label="거리/시간" />
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field label="연봉" prefix="￦" hint="단위: 만원" />
+                <v-text-field v-model="job.pay" label="연봉" prefix="￦" hint="단위: 만원" />
               </v-col>
               <v-col cols="12" md="4">
                 <v-select
+                  v-model="job.review"
                   :items="['5, 매우 긍정적', '4, 긍정적', '3, 보통', '2, 부정적', '1, 일단 적어둠']"
                   label="지원검토"
                 />
               </v-col>
               <v-col cols="12" md="6">
                 <v-autocomplete
+                  v-model="job.recruitsite"
                   :items="[
                     '공식홈페이지',
                     '원티드',
@@ -67,16 +88,26 @@
                     '워크넷',
                     '기타'
                   ]"
+                  :rules="[(v) => !!v || '필수입력 항목입니다.']"
                   label="지원사이트 *"
                   required
                 />
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field label="회사 홈페이지" hint="회사홈페이지 또는 구인 url" />
+                <v-text-field
+                  v-model="job.homepage"
+                  label="회사 홈페이지"
+                  hint="회사홈페이지 또는 구인 url"
+                />
               </v-col>
 
               <v-col cols="12">
-                <v-textarea label="기타" rows="3" hint="기타 내용을 자유롭게 적어두세요" />
+                <v-textarea
+                  v-model="job.etc"
+                  label="기타"
+                  rows="3"
+                  hint="기타 내용을 자유롭게 적어두세요"
+                />
               </v-col>
             </v-row>
           </v-form>
@@ -87,7 +118,7 @@
         <btn @click="closeModal" text>취소</btn>
         <btn @click="resetForm" text>초기화</btn>
         <v-spacer></v-spacer>
-        <btn :disabled="!form" @click="closeModal" text>저장</btn>
+        <btn :disabled="!form" @click="updateJob" text>저장</btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -105,7 +136,8 @@ export default {
   },
   data() {
     return {
-      form: false
+      form: false,
+      job: { ...this.detail }
     }
   },
   computed: {
@@ -125,6 +157,12 @@ export default {
     },
     resetForm() {
       this.$refs.form.reset()
+    },
+    updateJob() {
+      this.$store.dispatch('jobs/update', { ...this.job }).then((item) => {
+        this.$store.dispatch('jobs/detail', this.$route.query.id)
+        this.closeModal()
+      })
     }
   }
 }

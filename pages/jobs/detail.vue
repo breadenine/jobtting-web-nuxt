@@ -209,6 +209,10 @@ export default {
   }
 }
 
+.etc {
+  margin-top: 0.5rem;
+}
+
 @media (min-width: 1904px) {
   .container {
     max-width: 1185px;

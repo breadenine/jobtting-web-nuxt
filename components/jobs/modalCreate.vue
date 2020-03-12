@@ -18,10 +18,11 @@
                   :rules="[(v) => !!v || '필수입력 항목입니다.']"
                   label="기업명 *"
                   required
+                  clearable
                 />
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field v-model="job.team" label="팀" hint="" />
+                <v-text-field v-model="job.team" label="팀" hint="" clearable />
               </v-col>
               <v-col cols="12" md="4">
                 <v-autocomplete
@@ -37,7 +38,8 @@
                     '임원면접',
                     '최종면접',
                     '최종합격',
-                    '면접탈락'
+                    '면접탈락',
+                    '취소'
                   ]"
                   :rules="[(v) => !!v || '필수입력 항목입니다.']"
                   label="상태 *"
@@ -168,7 +170,6 @@ export default {
     },
     createJob() {
       this.$store.dispatch('jobs/create', { ...this.job }).then((item) => {
-        console.log(item)
         this.closeModal()
         this.job = {
           ...initJob

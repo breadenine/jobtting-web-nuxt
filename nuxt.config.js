@@ -123,7 +123,10 @@ export default {
   },
   proxy: {
     // Simple proxy
-    // '/api': 'http://localhost:3000',
+    // '/api': {
+    //   target: 'http://localhost:3001',
+    //   changeOrigin: false
+    // }
     // '/api3': {
     //   changeOrigin: false,
     //   target: { socketPath: '/var/run/http-sockets/backend.sock' }

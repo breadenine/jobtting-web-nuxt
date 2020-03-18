@@ -123,10 +123,11 @@ export default {
   },
   proxy: {
     // Simple proxy
-    // '/api': {
-    //   target: 'http://localhost:3001',
-    //   changeOrigin: false
-    // }
+    '/api': {
+      target: process.env.AWS_FREETIER_URL,
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' }
+    }
     // '/api3': {
     //   changeOrigin: false,
     //   target: { socketPath: '/var/run/http-sockets/backend.sock' }

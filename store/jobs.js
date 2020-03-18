@@ -48,12 +48,12 @@ export const mutations = {
 
 export const actions = {
   async init({ commit, dispatch, getters }) {
-    const { data } = await this.$axios.get('http://localhost:3001/v1/jobs')
+    const { data } = await this.$axios.get('/api/v1/jobs')
     commit('SET_JOBS', data)
     return data
   },
   async detail({ state, commit }, id) {
-    const { data } = await this.$axios.get(`http://localhost:3001/v1/jobs/${id}`)
+    const { data } = await this.$axios.get(`/api/v1/jobs/${id}`)
     // const detail = state.jobs.find((item) => item.id === parseInt(id))
     const detail = data
     commit('SET_DETAIL', detail)

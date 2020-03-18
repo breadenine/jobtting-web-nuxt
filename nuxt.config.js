@@ -124,7 +124,7 @@ export default {
   proxy: {
     // Simple proxy
     '/api': {
-      target: process.env.AWS_FREETIER_URL,
+      target: process.env.AWS_FREETIER_URL || 'http://localhost:3000',
       changeOrigin: true,
       pathRewrite: { '^/api': '' }
     }

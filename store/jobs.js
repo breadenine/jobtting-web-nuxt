@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const API =
   process.env.NODE_ENV === 'production'
     ? process.env.AWS_FREETIER_URL + '/v1'

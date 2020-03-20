@@ -139,9 +139,7 @@ export default {
   },
   watch: {},
   fetch({ store, params }) {
-    store.dispatch('jobs/init').then((item) => {
-      console.log(item)
-    })
+    store.dispatch('jobs/init').then((item) => {})
   },
   created() {},
   mounted() {},

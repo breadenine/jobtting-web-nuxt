@@ -41,7 +41,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/globalComponents.js', '~plugins/globalFilters.js'],
+  plugins: [
+    '~plugins/globalComponents.js',
+    '~plugins/globalFilters.js',
+    '~plugins/globalMixins.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -122,16 +126,11 @@ export default {
     extend(config, ctx) {}
   },
   proxy: {
-    // Simple proxy
-    '/api': {
+    /* '/api': {
       target: process.env.AWS_FREETIER_URL || 'http://localhost:3000',
       changeOrigin: true,
       pathRewrite: { '^/api': '' }
-    }
-    // '/api3': {
-    //   changeOrigin: false,
-    //   target: { socketPath: '/var/run/http-sockets/backend.sock' }
-    // }
+    } */
   },
   router: {
     middleware: 'auth'

@@ -137,7 +137,7 @@ export default {
   data() {
     return {
       form: false,
-      job: { ...this.detail }
+      job: {}
     }
   },
   computed: {
@@ -147,6 +147,13 @@ export default {
       },
       get() {
         return this.$store.state.MODAL_JOBS_UPDATE
+      }
+    }
+  },
+  watch: {
+    dialog(value) {
+      if (value) {
+        this.job = { ...this.detail }
       }
     }
   },

@@ -1,3 +1,8 @@
+const API =
+  process.env.NODE_ENV === 'production'
+    ? process.env.AWS_FREETIER_URL + '/v1'
+    : 'http://localhost:3001/v1'
+
 const initialState = {
   jobs: [],
   page: 1,
@@ -48,29 +53,21 @@ export const mutations = {
 
 export const actions = {
   async init({ commit, dispatch, getters }) {
-    const { data } = await this.$axios.get('/api/v1/jobs')
+    const { data } = await this.$axios.get(`${API}/jobs`)
     commit('SET_JOBS', data)
     return data
   },
   async detail({ state, commit }, id) {
-    const { data } = await this.$axios.get(`/api/v1/jobs/${id}`)
-    // const detail = state.jobs.find((item) => item.id === parseInt(id))
-    const detail = data
-    commit('SET_DETAIL', detail)
+    const { data } = await this.$axios.get(`${API}/jobs/${id}`)
+    commit('SET_DETAIL', data)
   },
-  create({ state, commit }, job) {
-    const data = {
-      id: state.jobs.length + 1,
-      ...job
-    }
-    commit('ADD_JOBS', data)
-    return data
+  async create({ state, commit, dispatch }, job) {
+    await this.$axios.post(`${API}/jobs`, job)
   },
-  update({ state, commit }, job) {
-    const data = {
-      ...job
-    }
-    commit('UPDATE_JOBS', data)
-    return data
+  async update({ state, commit, dispatch }, job) {
+    await this.$axios.patch(`${API}/jobs/${job.id}`, job)
+  },
+  async delete({ state, commit, dispatch }, id) {
+    await this.$axios.delete(`${API}/jobs/${id}`)
   }
 }

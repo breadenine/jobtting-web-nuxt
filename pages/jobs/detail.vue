@@ -4,7 +4,10 @@
     <v-container>
       <section class="section section__company">
         <h2 class="company__name">{{ detail.name }}</h2>
-        <btn @click="onModalUpdate">지원정보 수정</btn>
+        <div>
+          <btn @click="onModalUpdate">지원정보 수정</btn>
+          <btn @click="remove" color="red">삭제</btn>
+        </div>
       </section>
 
       <section class="section">
@@ -147,6 +150,11 @@ export default {
     },
     onModalUpdate() {
       this.$store.commit('SET_MODAL_JOBS_UPDATE', true)
+    },
+    remove() {
+      this.$store.dispatch('jobs/delete', this.$route.query.id).then(() => {
+        this.$router.replace('/jobs')
+      })
     }
   }
 }

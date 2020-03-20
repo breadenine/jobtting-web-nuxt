@@ -3,6 +3,10 @@ const API =
     ? process.env.AWS_FREETIER_URL + '/v1'
     : 'http://localhost:3001/v1'
 
+console.log(process.env.NODE_ENV)
+console.log(process.env.AWS_FREETIER_URL)
+console.log(API)
+
 const initialState = {
   jobs: [],
   page: 1,

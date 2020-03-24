@@ -6,6 +6,9 @@ const API =
 console.log(process.env.NODE_ENV)
 console.log(process.env.AWS_FREETIER_URL)
 console.log(API)
+console.log(process.env.AA)
+console.log(process.env.BB)
+console.log(process.env.AA_BB)
 
 const initialState = {
   jobs: [],

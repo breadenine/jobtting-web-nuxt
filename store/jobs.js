@@ -1,14 +1,4 @@
-const API =
-  process.env.NODE_ENV === 'production'
-    ? process.env.AWS_FREETIER_URL + '/v1'
-    : 'http://localhost:3001/v1'
-
-console.log(process.env.NODE_ENV)
-console.log(process.env.AWS_FREETIER_URL)
-console.log(API)
-console.log(process.env.AA)
-console.log(process.env.BB)
-console.log(process.env.AA_BB)
+import api from '../api'
 
 const initialState = {
   jobs: [],
@@ -59,22 +49,22 @@ export const mutations = {
 }
 
 export const actions = {
-  async init({ commit, dispatch, getters }) {
-    const { data } = await this.$axios.get(`${API}/jobs`)
+  async list({ commit, dispatch, getters }) {
+    const data = await api.get(`/jobs`)
     commit('SET_JOBS', data)
     return data
   },
   async detail({ state, commit }, id) {
-    const { data } = await this.$axios.get(`${API}/jobs/${id}`)
+    const data = await api.get(`/jobs/${id}`)
     commit('SET_DETAIL', data)
   },
   async create({ state, commit, dispatch }, job) {
-    await this.$axios.post(`${API}/jobs`, job)
+    await api.post(`jobs`, job)
   },
   async update({ state, commit, dispatch }, job) {
-    await this.$axios.patch(`${API}/jobs/${job.id}`, job)
+    await api.patch(`jobs/${job.id}`, job)
   },
   async delete({ state, commit, dispatch }, id) {
-    await this.$axios.delete(`${API}/jobs/${id}`)
+    await api.remove(`jobs/${id}`)
   }
 }

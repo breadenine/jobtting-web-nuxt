@@ -170,7 +170,7 @@ export default {
     },
     createJob() {
       this.$store.dispatch('jobs/create', { ...this.job }).then((item) => {
-        this.$store.dispatch('jobs/init')
+        this.$store.dispatch('jobs/list')
         this.closeModal()
         this.job = {
           ...initJob

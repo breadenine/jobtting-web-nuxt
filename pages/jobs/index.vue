@@ -27,7 +27,6 @@
             <td>{{ item.pay | comma }}</td>
             <td>{{ item.review }}</td>
             <td>{{ item.recruitsite }}</td>
-            <td>{{ item.etc }}</td>
             <td>{{ item.jobplanet }}</td>
             <td>{{ item.homepage }}</td>
           </tr>
@@ -112,12 +111,6 @@ export default {
           value: 'recruitsite'
         },
         {
-          text: '기타',
-          align: 'center',
-          sortable: false,
-          value: 'etc'
-        },
-        {
           text: '잡플래닛',
           align: 'center',
           sortable: true,
@@ -139,7 +132,7 @@ export default {
   },
   watch: {},
   fetch({ store, params }) {
-    store.dispatch('jobs/init').then((item) => {})
+    store.dispatch('jobs/list').then((item) => {})
   },
   created() {},
   mounted() {},

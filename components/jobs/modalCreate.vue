@@ -118,6 +118,7 @@
         <btn @click="closeModal" text>취소</btn>
         <btn @click="resetForm" text>초기화</btn>
         <v-spacer></v-spacer>
+        <btn @click="searchCompany" text>회사</btn>
         <btn :disabled="!form" @click="createJob" text>저장</btn>
       </v-card-actions>
     </v-card>
@@ -125,6 +126,8 @@
 </template>
 
 <script>
+import api from '@/api'
+
 const initJob = {
   name: '',
   team: '',
@@ -176,6 +179,13 @@ export default {
           ...initJob
         }
       })
+    },
+    searchCompany() {
+      const data = api.get('/company', {
+        name: this.job.name
+      })
+
+      console.log(data)
     }
   }
 }

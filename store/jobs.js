@@ -59,12 +59,12 @@ export const actions = {
     commit('SET_DETAIL', data)
   },
   async create({ state, commit, dispatch }, job) {
-    await api.post(`jobs`, job)
+    await api.post(`/jobs`, job)
   },
   async update({ state, commit, dispatch }, job) {
-    await api.patch(`jobs/${job.id}`, job)
+    await api.patch(`/jobs/${job.id}`, job)
   },
   async delete({ state, commit, dispatch }, id) {
-    await api.remove(`jobs/${id}`)
+    await api.remove(`/jobs/${id}`)
   }
 }
